@@ -17,17 +17,18 @@ export class CommandesController {
 
   @Post()
   create(@Body() createCommandeDto: CreateCommandeDto) {
-    return this.commandesService.create(createCommandeDto);
+    console.log(createCommandeDto);
+      return this.commandesService.createCommande(createCommandeDto);
   }
 
   @Get('/getAll')
   findAll() {
-    return this.commandesService.findAll();
+    return this.commandesService.findAllCommande();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.commandesService.findOne(+id);
+    return this.commandesService.findOneCommande(+id);
   }
 
   @Patch(':id')
@@ -35,11 +36,11 @@ export class CommandesController {
     @Param('id') id: string,
     @Body() updateCommandeDto: UpdateCommandeDto,
   ) {
-    return this.commandesService.update(+id, updateCommandeDto);
+    return this.commandesService.updateCommande(+id, updateCommandeDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.commandesService.remove(+id);
+    return this.commandesService.removeCommande(+id);
   }
 }

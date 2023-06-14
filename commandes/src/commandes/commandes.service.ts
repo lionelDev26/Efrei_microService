@@ -4,31 +4,30 @@ import { UpdateCommandeDto } from './dto/update-commande.dto';
 import { Commande } from './entities/commande.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CommandesRepository } from './repository/commandes.repository';
+import { CommandeDto } from './dto/commande.dto';
 
 @Injectable()
 export class CommandesService {
-  constructor(
-    @InjectRepository(Commande)
-    private commandeRepository: Repository<Commande>,
-  ) {}
+  constructor(private commandeRepository : CommandesRepository){}
 
-  create(createCommandeDto: CreateCommandeDto) {
-    return 'This action adds a new commande';
+  createCommande(createCommandeDto: CreateCommandeDto) {
+    return this.commandeRepository.create(createCommandeDto);
   }
 
-  findAll() {
-    return this.commandeRepository.find();
+  findAllCommande() {
+    return this.commandeRepository.findAll();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} commande`;
+  findOneCommande(id: number) {
+    return this.commandeRepository.findOne(id);
   }
 
-  update(id: number, updateCommandeDto: UpdateCommandeDto) {
-    return `This action updates a #${id} commande`;
+  updateCommande(id: number, updateCommandeDto: UpdateCommandeDto) {
+    return this.commandeRepository.update(id,updateCommandeDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} commande`;
+  removeCommande(id: number) {
+    return this.commandeRepository.remove(id);
   }
 }
