@@ -4,4 +4,5 @@ export class CreateCommandeDto {
     num_client: number;
     transporteur: string;
     date_livraison: string;
+    id_vetements: number;
 }

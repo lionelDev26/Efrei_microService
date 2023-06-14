@@ -17,4 +17,7 @@ export class Commande {
     
     @Column()
     date_livraison: string;
+
+    @Column()
+    id_vetements: number;
 }

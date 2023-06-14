@@ -6,12 +6,16 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CommandesRepository } from './repository/commandes.repository';
 import { CommandeDto } from './dto/commande.dto';
+import { HttpService } from '@nestjs/axios';
 
 @Injectable()
 export class CommandesService {
-  constructor(private commandeRepository : CommandesRepository){}
+  constructor(private commandeRepository : CommandesRepository, private readonly httpService: HttpService){}
 
   createCommande(createCommandeDto: CreateCommandeDto) {
+    const result = this.httpService.get(`http://localhost:3001/vetements/${createCommandeDto.id_vetements}`).subscribe(res => {
+      console.log(res)
+    });
     return this.commandeRepository.create(createCommandeDto);
   }
 

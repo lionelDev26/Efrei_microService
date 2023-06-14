@@ -11,8 +11,6 @@ export class CommandesRepository {
   ) {}
 
   create(createCommandeDto: CommandeDto) {
-    console.log('service :');
-    console.log(createCommandeDto);
     return this.commandeRepository.save(createCommandeDto);
   }
 
