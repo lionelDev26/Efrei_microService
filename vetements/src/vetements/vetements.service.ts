@@ -1,16 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { CreateVetementDto } from './dto/create-vetement.dto';
 import { UpdateVetementDto } from './dto/update-vetement.dto';
-
+import { Vetement } from './entities/vetement.entity';
+import { VetementRepository } from './vetement.repository';
 @Injectable()
 export class VetementsService {
+  constructor(private  vetementRepository: VetementRepository) {}
   create(createVetementDto: CreateVetementDto) {
     return 'This action adds a new vetement';
   }
 
-  findAll() {
-    return `This action returns all vetements`;
+  findAll(): Promise<Vetement[]> {
+    const s =  this.vetementRepository.find();
+      return  s
   }
+
 
   findOne(id: number) {
     return `This action returns a #${id} vetement`;
